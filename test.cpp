@@ -14,11 +14,11 @@ struct Color {
     int R, G, B;
 };
 
+
 struct Color_mode{
 	Color mode;
 	string mode_name; 
 };
-
 
 struct Color_method{
     Color hex_str_2_rgb(string hexstring) {
@@ -108,10 +108,6 @@ class gpio{
 	}
 
     void get_rgb_mode()
-
-	
-
-
 
 };
 
