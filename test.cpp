@@ -7,7 +7,7 @@ using namespace std;
 // wiringPiSetup () ;
 //  pinMode(LED, PWM_OUTPUT) ;
 //  pwmWrite(LED, 255);
-//*****************************
+//*****************************///////
 //  pinMode (0, OUTPUT) ;
 //  digitalWrite(0, HIGH) ;
 struct Color {
