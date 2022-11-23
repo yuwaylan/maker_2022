@@ -42,6 +42,8 @@ struct Color_method{
         return str_rgb;
     }
 };
+
+/*
 struct File_method{
 	string Read_file(){
 		//https://www.w3schools.com/cpp/cpp_files.asp
@@ -58,6 +60,30 @@ struct File_method{
 		MyFile.close();
 		return true;
 	}
+
+};*/
+struct File_method {
+    string Read_file() {
+        //https://www.w3schools.com/cpp/cpp_files.asp
+        // 上面為開啟檔案的寫法
+        //本函式 你需要把檔案的東西讀出來然後作為字串存到string_content
+        ofstream MyFile("storage.txt");
+        string  string_content ;
+        ifstream MyReadFile("storage.txt");
+        while (getline(MyReadFile, string_content)) {
+            
+            cout << string_content;
+        }
+        MyFile.close();
+        return string_content;
+    }
+    bool Safe_file(string content) {
+        //本函式 你需要把字串content 的存到MyFile的物件裡面
+        ofstream MyFile("storage.txt");
+        MyFile << "Mode1,F75000 '\n' Mode2,0072E3 '\n' Mode3,00DB00 '\n' Mode4,FFFF37 '\n' Mode5,921AFF '\n' Mode6,000000";
+        MyFile.close();
+        return true;
+    }
 
 };
 
