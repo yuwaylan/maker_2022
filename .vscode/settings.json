@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.m": "matlab",
+        "__config": "cpp",
+        "cstdio": "cpp",
+        "ctime": "cpp",
+        "cwchar": "cpp",
+        "fstream": "cpp",
+        "type_traits": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "algorithm": "cpp"
+    }
+}

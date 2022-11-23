@@ -15,7 +15,7 @@ struct Color {
 };
 
 struct Color_mode{
-	Color mode;
+	Color color;
 	string mode_name; 
 };
 
@@ -71,8 +71,9 @@ struct File_method {
         string  string_content ;
         ifstream MyReadFile("storage.txt");
         while (getline(MyReadFile, string_content)) {
-            
-            cout << string_content;
+            string_content += ";";
+            string_content+=string_content;
+            // cout << string_content;
         }
         MyFile.close();
         return string_content;
@@ -80,7 +81,7 @@ struct File_method {
     bool Safe_file(string content) {
         //本函式 你需要把字串content 的存到MyFile的物件裡面
         ofstream MyFile("storage.txt");
-        MyFile << "Mode1,F75000 '\n' Mode2,0072E3 '\n' Mode3,00DB00 '\n' Mode4,FFFF37 '\n' Mode5,921AFF '\n' Mode6,000000";
+        MyFile << content;
         MyFile.close();
         return true;
     }
@@ -88,8 +89,8 @@ struct File_method {
 };
 
 class gpio{
-	Color_method cm;
 	File_method fm;
+    Color_method cm;
 	Color_mode c_mode[6]; //有五個模式 模式6為自訂，程式不設定，只儲存
     string vars;
     public:
@@ -99,6 +100,11 @@ class gpio{
 
 		for(int i =0;i<5;i++) c_mode[i].mode_name = ""; // 要先把所有的name 進行初始化
         vars = fm.Read_file();
+        c_mode[0].color = cm.hex_str_2_rgb( vars 讀取出來的色碼);
+        c_mode[0].mode_name = vars 讀出來的情境名稱;
+        
+
+
 
 
         wiringPiSetup();
@@ -108,6 +114,7 @@ class gpio{
     ~gpio(){
         //在這邊會需要將所有變數變成字串存到檔案裡面
         string contents="";
+
         fm.Safe_file(contents);
     }
 
@@ -129,8 +136,13 @@ class gpio{
     }
     */
 	
-	void set_rgb_mode(string mode_name, Color c){
+	int set_rgb_mode(string mode_name, Color c){
 		// 查看c_mode內每一個mode＿name是不是有重複，如果有重複，就覆蓋後面的c，如果沒有重複&&沒有滿五種
+        int index_mode= -1;
+        string colorcode = cm.rgb_2_hex_str(c);
+
+
+        return index_mode;
 	}
 
     void get_rgb_mode()
@@ -143,10 +155,20 @@ class gpio{
 
 int main(int argc, char* argv[]) {
 
-    Color_method cm;
-    string hex_str(argv[1]);
-    Color c = cm.hex_str_2_rgb(hex_str);
-    cout << c.R <<"　" << c.G << "　" << c.B << "　" << endl;
-    cout << cm.rgb_2_hex_str(c) << endl;
+    // Color_method cm;
+    // string hex_str(argv[1]);
+    // Color c = cm.hex_str_2_rgb(hex_str);
+    // cout << c.R <<"　" << c.G << "　" << c.B << "　" << endl;
+    // cout << cm.rgb_2_hex_str(c) << endl;
+
+    gpio iopin;
+    Color c;
+    c.R =50;
+    c.G = 100;
+    c.B = 255;
+    iopin.set_rgb_mode("情境二",c);
+
+    delete iopin;
+
     return 0;
 }
