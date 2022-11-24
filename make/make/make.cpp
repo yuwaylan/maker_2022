@@ -106,15 +106,16 @@ public:
         
 
         //for (int i = 0; i < 6; i++) c_mode[i].mode_name = ""; // 要先把所有的name 進行初始化
+      
         vars = fm.Read_file();
         string buf[12];
         int current = 0;
         int next;
-        int cut= vars.find_first_of(",;", current);
+        int cut= vars.find_first_of(" ,;", current);
         int i = 0;
         while (1)
         {
-            next = vars.find_first_of(",;", current);
+            next = vars.find_first_of(" ,;", current);
             if (next != current)
             {
                 string tmp = vars.substr(current, next - current);
@@ -129,23 +130,28 @@ public:
             current = next+1; //下次由 next + 1 的位置開始找起。
         }
 
-        for (string tmp : buf)
-        {
-            for (int i = 0; i<6; i++)
-            {
-                //i % 2;
-                
-                cout << c_mode[i].mode_name;
-            }
-            c_mode[i].mode_name = tmp;
+       
             
-        }
+            for (int i = 0; i<12; i++)
+            {
+                
+                if (i % 2 == 0)
+                {
 
-        for (int i = 0; i < 6; i++)
-        {
-            //cm.hex_str_2_rgb = c_mode[i].color;
-            //cout<<c_mode[i].mode_name;
-        }
+                    cout << buf[i] << endl;
+                }
+            }
+            for (int j = 0; j < 12; j++)
+            {
+
+                if (j % 2 != 0)
+                {
+
+                    cout << buf[j] << endl;
+                }
+            }
+            
+   
         
         //c_mode[0].color = cm.hex_str_2_rgb( vars 讀取出來的色碼);
         //c_mode[0].mode_name = vars 讀出來的情境名稱;
@@ -188,7 +194,7 @@ public:
 
     int set_rgb_mode(string mode_name, Color c) {
         // 查看c_mode內每一個mode＿name是不是有重複，如果有重複，就覆蓋後面的c，如果沒有重複&&沒有滿五種
-        int index_mode = -1;
+        int index_mode = -1;  //都沒做修改
 
         for (int i = 1; i < 6; i++)
         {
@@ -196,7 +202,7 @@ public:
             {
                 if (c_mode == c_mode)   //如果一樣就覆蓋
                 {
-                    string colorcode = cm.rgb_2_hex_str(c);
+                   cm.rgb_2_hex_str(c)=colorcode ;
                 }
                 //缺 如果沒有重複&&沒有滿五種
             }
