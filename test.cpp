@@ -68,20 +68,20 @@ struct File_method {
         //https://www.w3schools.com/cpp/cpp_files.asp
         // 上面為開啟檔案的寫法
         //本函式 你需要把檔案的東西讀出來然後作為字串存到string_content
-        string  string_content ;
         ifstream MyReadFile("storage.txt");
+        string  string_content ;
         while (getline(MyReadFile, string_content)) {
-            string_content += ";";
-            string_content+=string_content;
-            // cout << string_content;
+            //string_content += ";";
+            //string_content+=string_content;
+            cout << string_content;
         }
         MyFile.close();
         return string_content;
     }
     bool Safe_file(string content) {
         //本函式 你需要把字串content 的存到MyFile的物件裡面
-        ofstream MyFile("storage.txt");
-        MyFile << content;
+        ifstream MyFile("storage.txt");
+        MyFile= string  string_content;
         MyFile.close();
         return true;
     }
@@ -97,8 +97,10 @@ class gpio{
     gpio(){
 		//在這邊你需要讀取檔案，把檔案裡面的變數變成程式儲存的變數
 		// 1. 讀取檔案，2.把字串裡的文字變成變數
-
-		for(int i =0;i<5;i++) c_mode[i].mode_name = ""; // 要先把所有的name 進行初始化
+        ifstream MyReadFile("storage.txt");
+        vars= string  string_content;
+        
+        for(int i =0;i<5;i++) c_mode[i].mode_name = ""; // 要先把所有的name 進行初始化
         vars = fm.Read_file();
         
         
@@ -209,7 +211,8 @@ int main(int argc, char* argv[]) {
     // Color c = cm.hex_str_2_rgb(hex_str);
     // cout << c.R <<"　" << c.G << "　" << c.B << "　" << endl;
     // cout << cm.rgb_2_hex_str(c) << endl;
-
+    File_method aaaa;
+    cout << aaaa.Read_file<< endl;
     gpio iopin;
     Color c;
     c.R =50;
