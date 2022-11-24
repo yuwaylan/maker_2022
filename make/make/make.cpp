@@ -111,7 +111,6 @@ public:
         string buf[12];
         int current = 0;
         int next;
-        int cut= vars.find_first_of(" ,;", current);
         int i = 0;
         while (1)
         {
@@ -196,19 +195,41 @@ public:
         // 查看c_mode內每一個mode＿name是不是有重複，如果有重複，就覆蓋後面的c，如果沒有重複&&沒有滿五種
         int index_mode = -1;  //都沒做修改
 
-        for (int i = 1; i < 6; i++)
+        
+        bool f;   //讀入的元素是否出現過
+        int k=0;
+        for (int i = 0; i < 6; i++)
+        {
+            name;
+            f = true;
+            for (int j = 0; j < 6; j++)   //每個檢查尋找重複的值
+            {
+                if (a[j] != name)   //如果沒有重複的值了就結束迴圈
+                {
+                    f = false;
+                    break;
+                }
+            }
+            if (f = true)   //如果有一樣的數就存入
+            {
+                a[k]=x;
+                k++;
+            }
+        }
+        
+        /*for (int i = 1; i < 6; i++)
         {
             for (int j = 0; j < 6 - i; j++)
             {
-                if (c_mode == c_mode)   //如果一樣就覆蓋
+                if (mode_name == mode_name)   //如果一樣就覆蓋
                 {
-                   cm.rgb_2_hex_str(c)=colorcode ;
+                   cm.rgb_2_hex_str(c);
                 }
                 //缺 如果沒有重複&&沒有滿五種
             }
 
         }
-
+        */
 
         return index_mode;
     }
