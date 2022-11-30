@@ -1,8 +1,12 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+<<<<<<< Updated upstream
 #include<algorithm>
 #include <wiringPi.h> //to include gpio for rbpi
+=======
+// #include <wiringPi.h> //to include gpio for rbpi
+>>>>>>> Stashed changes
 
 using namespace std;
 // wiringPiSetup () ;
@@ -33,7 +37,7 @@ struct Color_method{
     }
     string rgb_2_hex_str(Color rgb) {
         char hex_char[] = { "0123456789ABCDEF" };
-        string str_rgb = "", t="";
+        string str_rgb = "";
         str_rgb.push_back(hex_char[(rgb.R / 16)]); 
         str_rgb.push_back(hex_char[(rgb.R % 16)]);
         str_rgb.push_back(hex_char[(rgb.G / 16)]); 
@@ -113,7 +117,7 @@ class gpio{
         //c_mode[0].mode_name = vars 讀出來的情境名稱;
         
 
-        wiringPiSetup();
+        // wiringPiSetup();
         cout<< "gpio init";
     }
 
@@ -198,6 +202,9 @@ class gpio{
 
     void get_rgb_mode()
 
+    void get_rgb_mode(){
+
+    }
 	
 
 
@@ -205,6 +212,7 @@ class gpio{
 };
 
 int main(int argc, char* argv[]) {
+<<<<<<< HEAD
 
     // Color_method cm;
     // string hex_str(argv[1]);
@@ -222,5 +230,19 @@ int main(int argc, char* argv[]) {
 
     delete iopin;
 
+=======
+    Color_method cm;
+    string hex_str(argv[1]);
+    Color c = cm.hex_str_2_rgb(hex_str);
+    cout << c.R <<"　" << c.G << "　" << c.B << "　" << endl;
+    cout << cm.rgb_2_hex_str(c) << endl;
+<<<<<<< Updated upstream
+>>>>>>> 198ae19 (加大括號)
+=======
+
+    File_method fm;
+    fm.Read_file();
+    
+>>>>>>> Stashed changes
     return 0;
 }
