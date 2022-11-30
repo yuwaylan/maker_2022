@@ -1,0 +1,6 @@
+模式1,FFAA12
+模式２,FFAA12
+模式３,FFAA12
+模式４,FFAA12
+模式５,FFAA12
+自訂,FFAA12

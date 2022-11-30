@@ -107,12 +107,16 @@ class gpio{
 		// 查看c_mode內每一個mode＿name是不是有重複，如果有重複，就覆蓋後面的c，如果沒有重複&&沒有滿五種
 	}
 
-    void get_rgb_mode()
+    void get_rgb_mode(){
+        
+    }
+	
+
+
 
 };
 
 int main(int argc, char* argv[]) {
-
     Color_method cm;
     string hex_str(argv[1]);
     Color c = cm.hex_str_2_rgb(hex_str);
