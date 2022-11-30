@@ -108,6 +108,7 @@ public:
         //for (int i = 0; i < 6; i++) c_mode[i].mode_name = ""; // 要先把所有的name 進行初始化
       
         vars = fm.Read_file();
+        
         string buf[12];
         int current = 0;
         int next;
@@ -129,7 +130,8 @@ public:
             current = next+1; //下次由 next + 1 的位置開始找起。
         }
 
-       
+        
+        
             
             for (int i = 0; i<12; i++)
             {
@@ -138,17 +140,16 @@ public:
                 {
 
                     cout << buf[i] << endl;
+                    c_mode[i].mode_name = buf[i];
                 }
-            }
-            for (int j = 0; j < 12; j++)
-            {
-
-                if (j % 2 != 0)
+                if (i % 2 != 0)
                 {
 
-                    cout << buf[j] << endl;
+                    cout << buf[i] << endl;
+                     c_mode[i].color= buf[i];
                 }
             }
+            
             
    
         
@@ -196,25 +197,18 @@ public:
         int index_mode = -1;  //都沒做修改
 
         
-        bool f;   //讀入的元素是否出現過
-        int k=0;
+        //bool f;   //讀入的元素是否出現過
+        //int k=0;
         for (int i = 0; i < 6; i++)
         {
-            name;
-            f = true;
-            for (int j = 0; j < 6; j++)   //每個檢查尋找重複的值
-            {
-                if (a[j] != name)   //如果沒有重複的值了就結束迴圈
+           // name;
+            
+                if (c_mode[i].mode_name == mode_name)   
                 {
-                    f = false;
-                    break;
+                    c_mode[i].color = (c);
                 }
-            }
-            if (f = true)   //如果有一樣的數就存入
-            {
-                a[k]=x;
-                k++;
-            }
+            
+            
         }
         
         /*for (int i = 1; i < 6; i++)
