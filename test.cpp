@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include<algorithm>
 #include <wiringPi.h> //to include gpio for rbpi
 
 using namespace std;
@@ -67,21 +68,20 @@ struct File_method {
         //https://www.w3schools.com/cpp/cpp_files.asp
         // 上面為開啟檔案的寫法
         //本函式 你需要把檔案的東西讀出來然後作為字串存到string_content
-        ofstream MyFile("storage.txt");
-        string  string_content ;
         ifstream MyReadFile("storage.txt");
+        string  string_content ;
         while (getline(MyReadFile, string_content)) {
-            string_content += ";";
-            string_content+=string_content;
-            // cout << string_content;
+            //string_content += ";";
+            //string_content+=string_content;
+            cout << string_content;
         }
         MyFile.close();
         return string_content;
     }
     bool Safe_file(string content) {
         //本函式 你需要把字串content 的存到MyFile的物件裡面
-        ofstream MyFile("storage.txt");
-        MyFile << content;
+        ifstream MyFile("storage.txt");
+        MyFile= string  string_content;
         MyFile.close();
         return true;
     }
@@ -97,24 +97,63 @@ class gpio{
     gpio(){
 		//在這邊你需要讀取檔案，把檔案裡面的變數變成程式儲存的變數
 		// 1. 讀取檔案，2.把字串裡的文字變成變數
-
-		for(int i =0;i<5;i++) c_mode[i].mode_name = ""; // 要先把所有的name 進行初始化
-        vars = fm.Read_file();
-        c_mode[0].color = cm.hex_str_2_rgb( vars 讀取出來的色碼);
-        c_mode[0].mode_name = vars 讀出來的情境名稱;
+        ifstream MyReadFile("storage.txt");
+        vars= string  string_content;
         
-
-
-
+        for(int i =0;i<5;i++) c_mode[i].mode_name = ""; // 要先把所有的name 進行初始化
+        vars = fm.Read_file();
+        
+        
+        for (int i = 0; i < 6; i++)
+        {
+            cm.hex_str_2_rgb = c_mode[i].color;
+            vars = c_mode[i].mode_name;
+        }
+        //c_mode[0].color = cm.hex_str_2_rgb( vars 讀取出來的色碼);
+        //c_mode[0].mode_name = vars 讀出來的情境名稱;
+        
 
         wiringPiSetup();
         cout<< "gpio init";
     }
 
+    void string_content_cut(string s, vector<string>& buf);   //切割
+    int main()
+    {
+        string s = string_content;
+        vector<string> buf;
+        string_content_cut_seat(s, buf);
+        for (string tmp : buf)
+            cout << tmp << endl;
+    }
+
+    void string_content_cut_seat(string s, vector<string>& buf)
+    {
+        int current = 0; //最初由 0 的位置開始找
+        int next;
+        while (1)
+        {
+            next = s.find_first_of(" ,", current);
+            if (next != current)
+            {
+                string tmp = s.substr(current, next - current);
+                if (tmp.size() != 0) //忽略空字串
+                    buf.push_back(tmp);
+            }
+            if (next == string::npos) break;
+            current = next + 1; //下次由 next + 1 的位置開始找起。
+        }
+    }
+    
+ 
     ~gpio(){
         //在這邊會需要將所有變數變成字串存到檔案裡面
         string contents="";
-
+        for (int i = 0; i < 6; i++)
+        {
+            c_mode[i].mode_name = vars;
+        }
+        
         fm.Safe_file(contents);
     }
 
@@ -139,8 +178,20 @@ class gpio{
 	int set_rgb_mode(string mode_name, Color c){
 		// 查看c_mode內每一個mode＿name是不是有重複，如果有重複，就覆蓋後面的c，如果沒有重複&&沒有滿五種
         int index_mode= -1;
-        string colorcode = cm.rgb_2_hex_str(c);
-
+        
+        for (int i = 1; i < 6; i++)
+        {
+            for (int j = 0; j < 6 - i; j++)
+            {
+                if (c_mode == c_mode)   //如果一樣就覆蓋
+                {
+                 string colorcode = cm.rgb_2_hex_str(c);
+                }
+                //缺 如果沒有重複&&沒有滿五種
+            }
+                
+        }
+        
 
         return index_mode;
 	}
@@ -160,7 +211,8 @@ int main(int argc, char* argv[]) {
     // Color c = cm.hex_str_2_rgb(hex_str);
     // cout << c.R <<"　" << c.G << "　" << c.B << "　" << endl;
     // cout << cm.rgb_2_hex_str(c) << endl;
-
+    File_method aaaa;
+    cout << aaaa.Read_file<< endl;
     gpio iopin;
     Color c;
     c.R =50;
