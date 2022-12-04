@@ -1,8 +1,13 @@
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+// import 'package:flutter_blob/blob_button.dart';
+// import '../flutter_flow/flutter_flow_theme.dart';
+// import '../flutter_flow/flutter_flow_util.dart';
+// import '../flutter_flow/flutter_flow_widgets.dart';
+// import 'package:google_fonts/google_fonts.dart';
+
+import 'package:pushable_button/pushable_button.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import 'modeSelect.dart';
 
 class MenuWidget extends StatefulWidget {
   const MenuWidget({Key? key}) : super(key: key);
@@ -13,111 +18,110 @@ class MenuWidget extends StatefulWidget {
 
 class _MenuWidgetState extends State<MenuWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: [
-              Align(
-                alignment: AlignmentDirectional(0, 0),
-                child: Image.network(
-                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/cover-table-1-9ea1tp/assets/8roe30uzu5qp/8.png',
-                  width: 390,
-                  height: 844,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.01, -0.27),
-                child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
-                  text: '選單',
-                  options: FFButtonOptions(
-                    width: 200,
-                    height: 100,
-                    color: Color(0xFF7323C0),
-                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Poppins',
-                          color: Colors.white,
-                          fontSize: 80,
-                          letterSpacing: 3,
-                        ),
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(-0.63, 0.7),
-                child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
-                  text: '收納',
-                  options: FFButtonOptions(
-                    width: 180,
-                    height: 100,
-                    color: Color(0xFF54CEC1),
-                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Poppins',
-                          color: Colors.white,
-                          fontSize: 80,
-                        ),
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.85, 0.93),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-                  child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
-                    },
-                    text: '',
-                    icon: Icon(
-                      Icons.mic,
-                      color: Colors.black,
-                      size: 80,
-                    ),
-                    options: FFButtonOptions(
-                      width: 80,
-                      height: 80,
-                      color: Color(0xFF7ED2F5),
-                      textStyle:
-                          FlutterFlowTheme.of(context).subtitle2.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.white,
-                              ),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            colorFilter: ColorFilter.srgbToLinearGamma(),
+            image: AssetImage(
+              "assets/images/Background.png",
+            ),
+            fit: BoxFit.cover,
           ),
         ),
+        child: Padding(
+            padding: const EdgeInsets.only(left: 50, right: 50),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 170, left: 20, right: 20),
+                    child: Image.asset('assets/images/cover_table_logo.png'),
+                  ),
+                  const SizedBox(
+                    height: 100,
+                    width: 20,
+                  ),
+                  PushableButton(
+                    child: const Text(
+                      '模式選擇',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontWeight: FontWeight.w900,
+                        // color: Color.fromARGB(255, 115, 43, 26),
+                      ),
+                    ),
+                    height: 60,
+                    elevation: 8,
+                    hslColor: HSLColor.fromAHSL(0.7, 22, 0.50, 0.80),
+                    shadow: BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 2),
+                    ),
+                    onPressed: () {
+                      print('模式選擇 Pressed!');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => modeSelect()));
+                    },
+                  ),
+                  SizedBox(
+                    height: 40,
+                    width: 20,
+                  ),
+                  PushableButton(
+                    child: Text('語音控制',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          // color: Color.fromARGB(255, 115, 43, 26),
+                        )),
+                    height: 60,
+                    elevation: 8,
+                    hslColor: HSLColor.fromAHSL(0.7, 22, 0.50, 0.80),
+                    shadow: BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 2),
+                    ),
+                    onPressed: () => print('語音控制 Pressed!'),
+                  ),
+                ],
+              ),
+            )),
       ),
     );
   }
 }
+
+
+
+// SizedBox(
+//                   width: blobLayoutSize.width,
+//                   height: blobLayoutSize.height,
+//                   child: BlobLayout.from(
+//                     blobs: [
+//                       RotatingParticle.random(blobLayoutSize),
+//                       RotatingParticle.random(blobLayoutSize),
+//                       RotatingParticle.random(blobLayoutSize),
+//                       RotatingParticle.random(blobLayoutSize),
+//                       RotatingParticle.random(blobLayoutSize),
+//                       RotatingParticle.random(blobLayoutSize),
+//                       RotatingParticle.random(blobLayoutSize),
+//                       RotatingParticle.random(blobLayoutSize),
+//                     ],
+//                     blobsColor: Colors.amber[800]!,
+//                   ),
+//                 ),
+//               )

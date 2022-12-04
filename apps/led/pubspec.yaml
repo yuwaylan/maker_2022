@@ -1,5 +1,5 @@
 name: led
-description: A new Flutter project.
+description: Maker 2022 Covertable
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -32,19 +32,22 @@ dependencies:
   flutter:
     sdk: flutter
   auto_size_text: 3.0.0
-  cached_network_image: 3.2.1
-  flutter_animate: 1.0.0
+  cached_network_image: ^3.2.3
+  flutter_animate: ^2.0.1
   flutter_cache_manager: 3.3.0
-  font_awesome_flutter: 10.1.0
+  font_awesome_flutter: ^10.2.1
   from_css_color: 2.0.0
   google_fonts: 3.0.1
   intl: 0.17.0
-  json_path: 0.4.1
-  page_transition: 2.0.4
+  json_path: ^0.4.2
+  page_transition: ^2.0.9
   shared_preferences: 2.0.15
-  sqflite: 2.2.0+2
-  timeago: 3.2.2
-  url_launcher: 6.1.5
+  sqflite: ^2.2.1
+  timeago: ^3.3.0
+  url_launcher: ^6.1.7
+  flutter_native_splash: ^2.2.16
+  flutter_blob: ^0.0.1
+  pushable_button: ^0.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -74,9 +77,13 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - assets/images/cover_table_logo.png
+    - assets/images/Background.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
