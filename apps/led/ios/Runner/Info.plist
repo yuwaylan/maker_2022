@@ -49,5 +49,11 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+
+		<key>NSSpeechRecognitionUsageDescription</key>
+		<string>需要使用語音辨識！才能語音控制！</string>
+
+		<key>NSMicrophoneUsageDescription</key>
+		<string>需要使用麥克風！才能語音控制！</string>
 	</dict>
 </plist>

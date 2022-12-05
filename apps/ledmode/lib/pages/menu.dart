@@ -1,7 +1,8 @@
+import 'package:ledmode/pages/state_list.dart';
 import 'package:pushable_button/pushable_button.dart';
 import 'package:flutter/material.dart';
 
-import 'modeSelect.dart';
+import 'modeSet.dart';
 
 class MenuWidget extends StatefulWidget {
   const MenuWidget({Key? key}) : super(key: key);
@@ -46,7 +47,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                   ),
                   PushableButton(
                     child: const Text(
-                      '模式選擇',
+                      '模式設定',
                       style: TextStyle(
                         fontSize: 20,
                         color: Color.fromARGB(255, 255, 255, 255),
@@ -64,7 +65,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                       offset: Offset(0, 2),
                     ),
                     onPressed: () {
-                      print('模式選擇 Pressed!');
+                      print('模式設定 Pressed!');
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -76,7 +77,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                     width: 20,
                   ),
                   PushableButton(
-                    child: Text('語音控制',
+                    child: Text('目前狀態查看',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w900,
@@ -92,7 +93,13 @@ class _MenuWidgetState extends State<MenuWidget> {
                       blurRadius: 7,
                       offset: Offset(0, 2),
                     ),
-                    onPressed: () => print('語音控制 Pressed!'),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StateWidget()));
+                      print('目前狀態查看 Pressed!');
+                    },
                   ),
                 ],
               ),

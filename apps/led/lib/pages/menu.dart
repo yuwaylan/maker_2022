@@ -4,6 +4,8 @@
 // import '../flutter_flow/flutter_flow_widgets.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
+import 'package:led/pages/page_mic.dart';
+import 'package:led/pages/vioceCtrl.dart';
 import 'package:pushable_button/pushable_button.dart';
 import 'package:flutter/material.dart';
 
@@ -98,7 +100,17 @@ class _MenuWidgetState extends State<MenuWidget> {
                       blurRadius: 7,
                       offset: Offset(0, 2),
                     ),
-                    onPressed: () => print('語音控制 Pressed!'),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => voiceCtrlWidget()));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => SpeechSampleApp()));
+                      print('語音控制 Pressed!');
+                    },
                   ),
                 ],
               ),
@@ -107,24 +119,3 @@ class _MenuWidgetState extends State<MenuWidget> {
     );
   }
 }
-
-
-
-// SizedBox(
-//                   width: blobLayoutSize.width,
-//                   height: blobLayoutSize.height,
-//                   child: BlobLayout.from(
-//                     blobs: [
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                     ],
-//                     blobsColor: Colors.amber[800]!,
-//                   ),
-//                 ),
-//               )

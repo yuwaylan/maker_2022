@@ -13,15 +13,15 @@ class modeSelect extends StatefulWidget {
 
 class _modeSelectState extends State<modeSelect> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final mode_names = ["模式一", "模式二", "模式三", "模式四", "模式五", "自訂模式"];
+  final mode_names = ["模式一", "模式二", "模式三", "模式四", "模式五"];
   final mode_colors = [
     "#FFFFFF",
     "#AAFF00",
     "#0000FF",
     "#545454",
     "#105205",
-    "#1111FF"
   ];
+  var selected_index = 0;
   Color pickerColor = Color.fromARGB(255, 255, 0, 0);
   Color currentColor = Color.fromARGB(255, 255, 255, 0);
 
@@ -29,18 +29,12 @@ class _modeSelectState extends State<modeSelect> {
     // setState(() => pickerColor = color);
     setState(() {
       pickerColor = color;
-      var Colorstr = ColorToHex(color).toString();
-      var pattern = "Color(0xff";
-
-      mode_colors[5] = "#" +
-          Colorstr.substring(Colorstr.indexOf(pattern) + pattern.length,
-              Colorstr.lastIndexOf(")"));
-      print(mode_colors);
     });
   }
 
-  Widget buttons(var index) {
-    pickerColor = HexColor("${mode_colors[index]}");
+  Widget buttons(var index, var name, var color_hex) {
+    TextEditingController _controller = TextEditingController();
+
     return Column(
       children: [
         PushableButton(
@@ -54,19 +48,72 @@ class _modeSelectState extends State<modeSelect> {
             offset: Offset(0, 2),
           ),
           onPressed: () {
-            print('${mode_names[index]} Pressed!');
-            if (index == 5) {
-              print("自訂顏色！！");
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      titlePadding: const EdgeInsets.all(0),
-                      contentPadding: const EdgeInsets.all(0),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(25))),
-                      content: SingleChildScrollView(
-                        child: SlidePicker(
+            pickerColor = HexColor(color_hex);
+            selected_index = index;
+            _controller.text = name;
+            print('${name} Pressed!');
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    backgroundColor: Color.fromARGB(255, 230, 230, 230),
+                    actions: [
+                      ElevatedButton(
+                          child: const Text("OK"),
+                          onPressed: () {
+                            setState(() {
+                              var Colorstr = ColorToHex(pickerColor).toString();
+                              var pattern = "Color(0xff";
+                              mode_colors[selected_index] =
+                                  "#${Colorstr.substring(Colorstr.indexOf(pattern) + pattern.length, Colorstr.lastIndexOf(")"))}";
+                              mode_names[selected_index] = _controller.text;
+
+                              print(mode_colors);
+                              print(mode_names);
+                            });
+
+                            Fluttertoast.showToast(
+                                msg:
+                                    "模式「${mode_names[selected_index]}」已設定為：${mode_colors[selected_index]}",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.SNACKBAR,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor:
+                                    HexColor(mode_colors[selected_index]),
+                                textColor: HexColor(mode_colors[selected_index])
+                                            .computeLuminance() >
+                                        0.5
+                                    ? Colors.black
+                                    : Colors.white,
+                                fontSize: 16.0);
+                            Navigator.pop(context);
+                          }),
+                      ElevatedButton(
+                          child: Text("Cancel"),
+                          onPressed: () {
+                            Fluttertoast.showToast(
+                                msg: "您未做任何更動",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.SNACKBAR,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor:
+                                    HexColor(mode_colors[selected_index]),
+                                textColor: HexColor(mode_colors[selected_index])
+                                            .computeLuminance() >
+                                        0.5
+                                    ? Colors.black
+                                    : Colors.white,
+                                fontSize: 16.0);
+                            Navigator.pop(context);
+                          }),
+                    ],
+                    titlePadding: const EdgeInsets.all(0),
+                    contentPadding: const EdgeInsets.all(0),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(25))),
+                    content: SingleChildScrollView(
+                      child: Column(children: [
+                        SlidePicker(
                           pickerColor: pickerColor,
                           onColorChanged: changeColor,
                           colorModel: ColorModel.rgb,
@@ -77,24 +124,28 @@ class _modeSelectState extends State<modeSelect> {
                           indicatorBorderRadius: const BorderRadius.vertical(
                               top: Radius.circular(25)),
                         ),
-                      ),
-                    );
-                  });
-            }
+                        Padding(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: TextField(
+                            maxLength: 6,
+                            controller: _controller,
+                            decoration: InputDecoration(
+                              labelText: "模式名稱",
+                              prefixIcon: Icon(Icons.style),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                          width: 10,
+                        )
+                      ]),
+                    ),
+                  );
+                });
 
             //---------------------------------------------------************************
             // send http request
-            Fluttertoast.showToast(
-                msg: "模式已更換為：${mode_colors[index]}",
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.SNACKBAR,
-                timeInSecForIosWeb: 1,
-                backgroundColor: HexColor("${mode_colors[index]}"),
-                textColor: //************************************透過計算亮度進行文字顏色改變
-                    HexColor("${mode_colors[index]}").computeLuminance() > 0.5
-                        ? Colors.black
-                        : Colors.white,
-                fontSize: 16.0);
           },
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
@@ -165,7 +216,7 @@ class _modeSelectState extends State<modeSelect> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("色彩模式選擇",
+        title: Text("色彩模式設定",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w900,
@@ -189,33 +240,13 @@ class _modeSelectState extends State<modeSelect> {
             padding: const EdgeInsets.only(left: 55, right: 55, top: 120),
             child: Center(
               child: ListView.builder(
-                  itemCount: 6,
+                  itemCount: 5,
                   itemBuilder: (BuildContext context, int index) {
-                    return buttons(index);
-                    // return Text("${index}");
+                    return buttons(
+                        index, mode_names[index], mode_colors[index]);
                   }),
             )),
       ),
     );
   }
 }
-
-// PushableButton(
-//   child: Text('語音控制',
-//       style: TextStyle(
-//         fontSize: 20,
-//         fontWeight: FontWeight.w900,
-//         color: Color.fromARGB(255, 255, 255, 255),
-//         // color: Color.fromARGB(255, 115, 43, 26),
-//       )),
-//   height: 60,
-//   elevation: 8,
-//   hslColor: HSLColor.fromAHSL(0.7, 22, 0.50, 0.80),
-//   shadow: BoxShadow(
-//     color: Colors.grey.withOpacity(0.3),
-//     spreadRadius: 5,
-//     blurRadius: 7,
-//     offset: Offset(0, 2),
-//   ),
-//   onPressed: () => print('語音控制 Pressed!'),
-// )
