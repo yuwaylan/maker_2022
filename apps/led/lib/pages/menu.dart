@@ -40,8 +40,11 @@ class _MenuWidgetState extends State<MenuWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsets.only(top: 170, left: 20, right: 20),
-                    child: Image.asset('assets/images/cover_table_logo.png'),
+                        const EdgeInsets.only(top: 190, left: 20, right: 20),
+                    child: Image.asset(
+                      'assets/images/cover_table_logo.png',
+                      opacity: const AlwaysStoppedAnimation(.9),
+                    ),
                   ),
                   const SizedBox(
                     height: 100,

@@ -46,7 +46,7 @@ class SplashPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0x000000),
       body: Center(
-        child: Image.asset('assets/images/cover_table_logo.png'),
+        child: Image.asset('assets/images/orig_cover_table_logo.png'),
       ),
     );
   }
