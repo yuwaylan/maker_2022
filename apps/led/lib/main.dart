@@ -1,5 +1,8 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:led/pages/menu.dart';
+import 'package:led/vars.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,21 +11,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Future.delayed(Duration(milliseconds: 2500)),
+      future: get_datas(),
       builder: (context, AsyncSnapshot snapshot) {
-        // Loading
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MaterialApp(
             home: SplashPage(),
           );
-        }
-
-        // Main
-        else {
+        } else {
           return MaterialApp(
             home: MenuWidget(),
           );
@@ -32,14 +30,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key, required this.title});
-//   final String title;
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
-
-// SplashPage
 class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
