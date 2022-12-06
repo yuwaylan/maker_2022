@@ -6,7 +6,7 @@ import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
-void main() => runApp(SpeechSampleApp());
+// void main() => runApp(SpeechSampleApp());
 
 class SpeechSampleApp extends StatefulWidget {
   @override
@@ -82,24 +82,24 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
           title: const Text('Speech to Text Example'),
         ),
         body: Column(children: [
-          HeaderWidget(),
+          // HeaderWidget(),
           Container(
             child: Column(
               children: <Widget>[
                 // InitSpeechWidget(_hasSpeech, initSpeechState),
                 SpeechControlWidget(_hasSpeech, speech.isListening,
                     startListening, stopListening),
-                SessionOptionsWidget(
-                  _currentLocaleId, // ＊ 台灣=>zh-Hant-TW 美國=>en-US
-                  _switchLang,
-                  _localeNames, // ＊ 台灣=>zh-Hant-TW 美國=>en-US
-                  _logEvents,
-                  _switchLogging,
-                  // _pauseForController, //default 3
-                  // _listenForController, // default 30sec 聽30秒
-                  // _onDevice,
-                  // _switchOnDevice,
-                ),
+                // SessionOptionsWidget(
+                //   _currentLocaleId, // ＊ 台灣=>zh-Hant-TW 美國=>en-US
+                //   _switchLang,
+                //   _localeNames, // ＊ 台灣=>zh-Hant-TW 美國=>en-US
+                //   _logEvents,
+                //   _switchLogging,
+                //   // _pauseForController, //default 3
+                //   // _listenForController, // default 30sec 聽30秒
+                //   // _onDevice,
+                //   // _switchOnDevice,
+                // ),
               ],
             ),
           ),
@@ -120,10 +120,6 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
     lastError = '';
     final pauseFor = int.tryParse(_pauseForController.text);
     final listenFor = int.tryParse(_listenForController.text);
-    // Note that `listenFor` is the maximum, not the minimun, on some
-    // systems recognition will be stopped before this value is reached.
-    // Similarly `pauseFor` is a maximum not a minimum and may be ignored
-    // on some devices.
     speech.listen(
       onResult: resultListener,
       listenFor: Duration(seconds: listenFor ?? 30),
@@ -161,7 +157,8 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
     _logEvent(
         'Result listener final: ${result.finalResult}, words: ${result.recognizedWords}');
     setState(() {
-      lastWords = '${result.recognizedWords} - ${result.finalResult}';
+      // lastWords = '${result.recognizedWords} - ${result.finalResult}';
+      lastWords = '${result.recognizedWords}';
     });
   }
 
@@ -234,12 +231,12 @@ class RecognitionResultsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Center(
-          child: Text(
-            'Recognized Words',
-            style: TextStyle(fontSize: 22.0),
-          ),
-        ),
+        // Center(
+        //   child: Text(
+        //     'Recognized Words',
+        //     style: TextStyle(fontSize: 22.0),
+        //   ),
+        // ),
         Expanded(
           child: Stack(
             children: <Widget>[
@@ -260,21 +257,21 @@ class RecognitionResultsWidget extends StatelessWidget {
   }
 }
 
-class HeaderWidget extends StatelessWidget {
-  const HeaderWidget({
-    Key? key,
-  }) : super(key: key);
+// class HeaderWidget extends StatelessWidget {
+//   const HeaderWidget({
+//     Key? key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Speech recognition available',
-        style: TextStyle(fontSize: 22.0),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Text(
+//         'Speech recognition available',
+//         style: TextStyle(fontSize: 22.0),
+//       ),
+//     );
+//   }
+// }
 
 /// Controls to start and stop speech recognition
 class SpeechControlWidget extends StatelessWidget {

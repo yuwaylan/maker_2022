@@ -101,6 +101,35 @@ class _MenuWidgetState extends State<MenuWidget> {
                       offset: Offset(0, 2),
                     ),
                     onPressed: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => voiceCtrlWidget()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SpeechSampleApp()));
+                      print('語音控制 Pressed!');
+                    },
+                  ),
+                  PushableButton(
+                    child: Text('YEEEEEEE',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          // color: Color.fromARGB(255, 115, 43, 26),
+                        )),
+                    height: 60,
+                    elevation: 8,
+                    hslColor: HSLColor.fromAHSL(0.7, 22, 0.50, 0.80),
+                    shadow: BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 2),
+                    ),
+                    onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -109,7 +138,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                       //     context,
                       //     MaterialPageRoute(
                       //         builder: (context) => SpeechSampleApp()));
-                      print('語音控制 Pressed!');
+                      print('語音控制2 Pressed!');
                     },
                   ),
                 ],
