@@ -1,3 +1,4 @@
+import 'package:ledmode/pages/desk_list.dart';
 import 'package:ledmode/pages/state_list.dart';
 import 'package:pushable_button/pushable_button.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => modeSelect()));
+                              builder: (context) => DeskSelect()));
                     },
                   ),
                   SizedBox(

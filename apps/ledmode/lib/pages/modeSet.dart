@@ -5,13 +5,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class modeSelect extends StatefulWidget {
-  const modeSelect({Key? key}) : super(key: key);
+  final id;
+  const modeSelect(this.id);
 
   @override
-  _modeSelectState createState() => _modeSelectState();
+  _modeSelectState createState() => _modeSelectState(id);
 }
 
 class _modeSelectState extends State<modeSelect> {
+  final id;
+  _modeSelectState(this.id);
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final mode_names = ["模式一", "模式二", "模式三", "模式四", "模式五"];
   final mode_colors = [
@@ -216,7 +220,7 @@ class _modeSelectState extends State<modeSelect> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("色彩模式設定",
+        title: Text("桌次${id + 1}色彩模式設定",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w900,
