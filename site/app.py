@@ -12,7 +12,7 @@ def hello():
     
 @app.route("/get_status")
 def get_status():
-    f = open("status.txt","r")
+    f = open("status.txt","r",encoding="utf-8")
     lines = f.readlines()
     file_content = lines
     print(file_content)
@@ -20,13 +20,13 @@ def get_status():
 
 @app.route('/set_status/<status>')
 def set_status(status):
-    f = open("status.txt","w")
+    f = open("status.txt","w",encoding="utf-8")
     f.write(status)
     return status
 
 @app.route("/get_modes")
 def get_modes():
-    f = open("mode.txt","r")
+    f = open("mode.txt","r",encoding="utf-8")
     lines = f.readlines()
     file_content = lines
     print(file_content)
@@ -34,11 +34,11 @@ def get_modes():
     
 @app.route('/set_modes/<modes>')
 def set_modes(modes):
-    f = open("mode.txt","w")
+    f = open("mode.txt","w",encoding="utf-8")
     f.write(modes)
     return modes
 
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0",port=8000)
 
