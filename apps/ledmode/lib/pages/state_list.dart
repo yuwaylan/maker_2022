@@ -129,7 +129,18 @@ class _StateWidgetState extends State<StateWidget> {
                         }),
                   ));
             } else {
-              return Container();
+              return Container(
+                child: Text(
+                  "資料載入中....",
+                  style: TextStyle(
+                    fontSize: 20,
+                    height: 2,
+                    letterSpacing: 2,
+                    fontWeight: FontWeight.w900,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
+                ),
+              );
             }
           },
         ),
