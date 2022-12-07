@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
 import "dart:convert";
 
-var host = "192.168.137.1:8000";
+var host = "10.3.141.1:8000";
 var mode_names;
 var mode_colors;
 
@@ -26,6 +26,14 @@ Future<void> get_datas() async {
   } finally {
     client.close();
   }
+}
+
+Future<void> F_get_datas() async {
+  // get_status =>目前模式
+  // set_status/<status> =>設定模式
+  // get_modes =>取得模式設定
+  // set_modes/<modes>  => 設定模式設定
+  print("FFF");
 }
 
 /// mode: set_status,set_modes

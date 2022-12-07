@@ -105,46 +105,46 @@ class _StateWidgetState extends State<StateWidget> {
         backgroundColor: Color.fromARGB(255, 142, 110, 87),
       ),
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            colorFilter: ColorFilter.srgbToLinearGamma(),
-            image: AssetImage(
-              "assets/images/Background.png",
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              colorFilter: ColorFilter.srgbToLinearGamma(),
+              image: AssetImage(
+                "assets/images/Background.png",
+              ),
+              fit: BoxFit.cover,
             ),
-            fit: BoxFit.cover,
           ),
-        ),
-        child: FutureBuilder(
-          future: get_status(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return Padding(
-                  padding: const EdgeInsets.only(left: 55, right: 55, top: 100),
-                  child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 55, right: 55, top: 100),
+            child: FutureBuilder(
+              future: get_status(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return Center(
                     child: ListView.builder(
                         itemCount: 1,
                         itemBuilder: (BuildContext context, int index) {
                           return buttons(
                               index, mode_content[0], mode_content[1]);
                         }),
-                  ));
-            } else {
-              return Container(
-                child: Text(
-                  "資料載入中....",
-                  style: TextStyle(
-                    fontSize: 20,
-                    height: 2,
-                    letterSpacing: 2,
-                    fontWeight: FontWeight.w900,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                  ),
-                ),
-              );
-            }
-          },
-        ),
-      ),
+                  );
+                } else {
+                  return Container(
+                    child: Text(
+                      "資料載入中....",
+                      style: TextStyle(
+                        fontSize: 20,
+                        height: 2,
+                        letterSpacing: 2,
+                        fontWeight: FontWeight.w900,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                    ),
+                  );
+                }
+              },
+            ),
+          )),
     );
   }
 }

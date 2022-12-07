@@ -3,7 +3,7 @@ import 'package:ledmode/pages/menu.dart';
 import 'package:ledmode/vars.dart';
 
 void main() {
-  get_datas();
+  F_get_datas();
   runApp(const MyApp());
 }
 

@@ -29,6 +29,10 @@ Future<void> get_datas() async {
   }
 }
 
+Future<void> F_get_datas() async {
+  print("FFFF");
+}
+
 Future<void> get_status() async {
   // get_status =>目前模式
   // set_status/<status> =>設定模式
