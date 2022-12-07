@@ -1,3 +1,4 @@
+import 'package:ledmode/vars.dart';
 import 'package:pushable_button/pushable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -13,26 +14,10 @@ class StateWidget extends StatefulWidget {
 
 class _StateWidgetState extends State<StateWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final mode_names = ["模式一", "模式二", "模式三模式三", "模式四", "模式五", "模式四", "模式五"];
-  final mode_colors = [
-    "#FFFFFF",
-    "#AAFF00",
-    "#0000FF",
-    "#545454",
-    "#105205",
-    "#545454",
-    "#105205",
-  ];
+
   var selected_index = 0;
   Color pickerColor = Color.fromARGB(255, 255, 0, 0);
   Color currentColor = Color.fromARGB(255, 255, 255, 0);
-
-  void changeColor(Color color) {
-    // setState(() => pickerColor = color);
-    setState(() {
-      pickerColor = color;
-    });
-  }
 
   Widget buttons(var index, var name, var color_hex) {
     TextEditingController _controller = TextEditingController();
@@ -129,16 +114,25 @@ class _StateWidgetState extends State<StateWidget> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Padding(
-            padding: const EdgeInsets.only(left: 55, right: 55, top: 100),
-            child: Center(
-              child: ListView.builder(
-                  itemCount: mode_names.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return buttons(
-                        index, mode_names[index], mode_colors[index]);
-                  }),
-            )),
+        child: FutureBuilder(
+          future: get_status(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Padding(
+                  padding: const EdgeInsets.only(left: 55, right: 55, top: 100),
+                  child: Center(
+                    child: ListView.builder(
+                        itemCount: 1,
+                        itemBuilder: (BuildContext context, int index) {
+                          return buttons(
+                              index, mode_content[0], mode_content[1]);
+                        }),
+                  ));
+            } else {
+              return Container();
+            }
+          },
+        ),
       ),
     );
   }

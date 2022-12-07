@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:ledmode/vars.dart';
 import 'package:pushable_button/pushable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -17,14 +20,7 @@ class _modeSelectState extends State<modeSelect> {
   _modeSelectState(this.id);
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final mode_names = ["模式一", "模式二", "模式三", "模式四", "模式五"];
-  final mode_colors = [
-    "#FFFFFF",
-    "#AAFF00",
-    "#0000FF",
-    "#545454",
-    "#105205",
-  ];
+
   var selected_index = 0;
   Color pickerColor = Color.fromARGB(255, 255, 0, 0);
   Color currentColor = Color.fromARGB(255, 255, 255, 0);
@@ -90,6 +86,8 @@ class _modeSelectState extends State<modeSelect> {
                                     ? Colors.black
                                     : Colors.white,
                                 fontSize: 16.0);
+                            var str = [mode_names, mode_colors];
+                            set_datas(mode: 1, str: jsonEncode(str));
                             Navigator.pop(context);
                           }),
                       ElevatedButton(

@@ -109,24 +109,3 @@ class _MenuWidgetState extends State<MenuWidget> {
     );
   }
 }
-
-
-
-// SizedBox(
-//                   width: blobLayoutSize.width,
-//                   height: blobLayoutSize.height,
-//                   child: BlobLayout.from(
-//                     blobs: [
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                       RotatingParticle.random(blobLayoutSize),
-//                     ],
-//                     blobsColor: Colors.amber[800]!,
-//                   ),
-//                 ),
-//               )

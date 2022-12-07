@@ -91,7 +91,7 @@ class _DeskSelectState extends State<DeskSelect> {
             padding: const EdgeInsets.only(left: 55, right: 55, top: 120),
             child: Center(
               child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: 1,
                   itemBuilder: (BuildContext context, int index) {
                     return buttons(index);
                   }),
