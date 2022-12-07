@@ -238,6 +238,7 @@ class _modeSelectState extends State<modeSelect> {
               fit: BoxFit.cover,
             ),
           ),
+<<<<<<< HEAD
           child: Padding(
             padding: const EdgeInsets.only(left: 55, right: 55, top: 120),
             child: FutureBuilder(
@@ -269,18 +270,20 @@ class _modeSelectState extends State<modeSelect> {
               },
             ),
           )),
+=======
+        ),
+        child: Padding(
+            padding: const EdgeInsets.only(left: 55, right: 55, top: 120),
+            child: Center(
+              child: ListView.builder(
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, int index) {
+                    return buttons(
+                        index, mode_names[index], mode_colors[index]);
+                  }),
+            )),
+      ),
+>>>>>>> parent of 3969ac1 (finish led mode)
     );
   }
 }
-
-
-// Padding(
-//             padding: const EdgeInsets.only(left: 55, right: 55, top: 120),
-//             child: Center(
-//               child: ListView.builder(
-//                   itemCount: 5,
-//                   itemBuilder: (BuildContext context, int index) {
-//                     return buttons(
-//                         index, mode_names[index], mode_colors[index]);
-//                   }),
-//             ))

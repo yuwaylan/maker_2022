@@ -50,7 +50,7 @@ class _StateWidgetState extends State<StateWidget> {
               ),
             ),
             Text(
-              '${name}',
+              '${mode_names[index]}',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w900,
@@ -61,13 +61,13 @@ class _StateWidgetState extends State<StateWidget> {
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: HexColor("${color_hex}"),
+                    color: HexColor("${mode_colors[index]}"),
                     spreadRadius: 1,
                     blurRadius: 7,
                     offset: Offset(0, 0),
                   )
                 ],
-                color: HexColor("${color_hex}"),
+                color: HexColor("${mode_colors[index]}"),
                 borderRadius: BorderRadius.all(
                   Radius.elliptical(10, 10),
                 ),
