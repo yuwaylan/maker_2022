@@ -238,17 +238,38 @@ class _modeSelectState extends State<modeSelect> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Padding(
-            padding: const EdgeInsets.only(left: 55, right: 55, top: 120),
-            child: Center(
-              child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (BuildContext context, int index) {
-                    return buttons(
-                        index, mode_names[index], mode_colors[index]);
-                  }),
-            )),
+        child: FutureBuilder(
+          future: get_datas(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Padding(
+                  padding: const EdgeInsets.only(left: 55, right: 55, top: 120),
+                  child: Center(
+                    child: ListView.builder(
+                        itemCount: 5,
+                        itemBuilder: (BuildContext context, int index) {
+                          return buttons(
+                              index, mode_names[index], mode_colors[index]);
+                        }),
+                  ));
+            } else {
+              return Container();
+            }
+          },
+        ),
       ),
     );
   }
 }
+
+
+// Padding(
+//             padding: const EdgeInsets.only(left: 55, right: 55, top: 120),
+//             child: Center(
+//               child: ListView.builder(
+//                   itemCount: 5,
+//                   itemBuilder: (BuildContext context, int index) {
+//                     return buttons(
+//                         index, mode_names[index], mode_colors[index]);
+//                   }),
+//             ))
