@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:led/vars.dart';
 import 'package:pushable_button/pushable_button.dart';
 import 'package:flutter/material.dart';
@@ -110,6 +112,9 @@ class _modeSelectState extends State<modeSelect> {
                       ),
                     );
                   });
+
+              var str = [mode_names, mode_colors];
+              set_datas(mode: 1, str: jsonEncode(str));
             } else {
               Fluttertoast.showToast(
                   msg: "模式已更換為：${mode_colors[index]}",
@@ -124,6 +129,8 @@ class _modeSelectState extends State<modeSelect> {
                   fontSize: 16.0);
             }
             //---------------------------------------------------************************
+            var str = [mode_names[index], mode_colors[index]];
+            set_datas(mode: 0, str: jsonEncode(str));
             // send http request
           },
           child:

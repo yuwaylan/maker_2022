@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types, non_constant_identifier_names, avoid_print, sort_child_properties_last
 
+import 'dart:convert';
 import 'dart:math';
 
+import 'package:led/vars.dart';
 import 'package:pushable_button/pushable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blob/blob_button.dart';
@@ -267,10 +269,11 @@ class _voiceCtrlState extends State<voiceCtrlWidget> {
                   },
                   onPointerUp: (details) {
                     setState(() {
+                      stopListening();
+                      process(show_strings);
                       show_strings = (show_strings == ""
                           ? "${hint_strings[Random().nextInt(hint_strings.length)]}"
                           : show_strings);
-                      stopListening();
                       is_Pressed = false;
                     });
                     print("Cancel");
@@ -284,5 +287,34 @@ class _voiceCtrlState extends State<voiceCtrlWidget> {
         ),
       ),
     );
+  }
+
+  void process(var string) {
+    if (string != "") {
+      var count = 0;
+      var mode = "";
+      var color = "";
+      try {
+        if (string.indexOf("設定為") != -1) {
+          for (var name in mode_names) {
+            if (string.indexOf(name) != -1) {
+              mode = name;
+              color = mode_colors[count];
+            }
+            count++;
+          }
+        } else if (string.indexOf("現在心情") != -1) {
+          var rand = Random().nextInt(mode_names.length);
+          mode = mode_names[rand];
+          color = mode_colors[rand];
+        } else if (string.indexOf("緊急呼叫") != -1) {
+          mode = "緊急呼叫";
+          color = "#FF0000";
+        } else {}
+      } finally {
+        var str = [mode, color];
+        set_datas(mode: 1, str: jsonEncode(str));
+      }
+    }
   }
 }
