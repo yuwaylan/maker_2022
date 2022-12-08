@@ -28,7 +28,11 @@ Future<void> get_datas() async {
   }
 }
 
+<<<<<<< Updated upstream
 Future<void> F_get_datas() async {
+=======
+Future<void> _get_datas() async {
+>>>>>>> Stashed changes
   // get_status =>目前模式
   // set_status/<status> =>設定模式
   // get_modes =>取得模式設定

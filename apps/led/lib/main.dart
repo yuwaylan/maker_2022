@@ -14,7 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
+<<<<<<< Updated upstream
       future: F_get_datas(),
+=======
+      future: Future.delayed(Duration(milliseconds: 2500)),
+>>>>>>> Stashed changes
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MaterialApp(
